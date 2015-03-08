@@ -1,0 +1,13 @@
+{
+    "name": "millennium/pagination",
+    "description": "Symfony2 Pagination Bundle Extended",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zlatko Hristov",
+            "email": "zlatko.2create@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

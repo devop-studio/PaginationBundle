@@ -27,33 +27,22 @@ class Extension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('result', array($this, 'results')),
+            new \Twig_SimpleFilter('pagination', array($this, 'results')),
             new \Twig_SimpleFilter('navigation', array($this, 'navigation'))
         );
     }
 
-    public function getFunctions()
+    public function results($pagination)
     {
-        return array(
-            new \Twig_SimpleFunction('pagination', array($this, 'pagination'))
-        );
+        return $pagination['results'];
     }
 
-    public function pagination($paginator = array())
+    public function navigation($paginator, $settings = array())
     {
+        
         $options = $this->container->getParameter('millennium.pagination.template');
         $paginator['classes'] = $this->container->getParameter('millennium.pagination.classes');
         return $this->container->get('templating')->render($options['pagination'], $paginator);
-    }
-
-    public function results()
-    {
-        
-    }
-
-    public function navigation()
-    {
-        
     }
 
     public function getName()
