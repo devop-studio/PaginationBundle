@@ -1,0 +1,13 @@
+services:
+    
+    millennium.pagination:
+        class: Millennium\PaginationBundle\Helper\Pagination
+        arguments: [@router, @service_container, @templating]
+        calls:
+            - [setOptions,[%millennium.pagination.options%]]
+        
+    millennium.twig.extension:
+        class: Millennium\PaginationBundle\Twig\Extension
+        arguments: [@service_container]
+        tags:
+            - { name: twig.extension }

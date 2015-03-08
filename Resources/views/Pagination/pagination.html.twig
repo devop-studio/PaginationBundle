@@ -1,0 +1,39 @@
+<nav class="{{ classes.nav|join(' ')|default('text-center') }}">
+    <ul class="{{ classes.ul|join(' ')|default('pagination') }}">
+        <li>
+            <a href="{{ paginator.first.url }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+        </li>
+{% if options.show_empty is defined and options.show_empty and paginator.prev is not empty %}
+    {% spaceless %}
+        <li>
+            <a href="{{ paginator.prev.url }}" title="Previous page {{ paginator.prev.page }}">
+                &laquo;
+            </a>
+        </li>
+    {% endspaceless %}
+{% endif %}
+        {% for page in paginator.pages %}
+            {% if page is empty %}
+                <li><span>...</span></li>
+            {% else %}
+        <li{% if paginator.current == page.page %} class="active"{% endif %}><a href="{{ page.url }}">{{ page.page }}</a></li>
+            {% endif %}
+        {% endfor %}
+{% if options.show_empty is defined and options.show_empty and paginator.next is not empty %}
+    {% spaceless %}
+        <li>
+            <a href="{{ paginator.next.url }}" title="Next page {{ paginator.next.page }}">
+                &raquo;
+            </a>
+        </li>
+    {% endspaceless %}
+{% endif %}
+        <li>
+            <a href="{{ paginator.last.url }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
