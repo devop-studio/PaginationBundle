@@ -5,31 +5,31 @@
                 <span aria-hidden="true">&laquo;&laquo;</span>
             </a>
         </li>
-{% if options.show_empty is defined and options.show_empty and paginator.prev is not empty %}
-    {% spaceless %}
-        <li>
-            <a href="{{ paginator.prev.url }}" title="Previous page {{ paginator.prev.page }}">
-                &laquo;
-            </a>
-        </li>
-    {% endspaceless %}
-{% endif %}
+        {% if ( options.show_empty is defined and options.show_empty ) or paginator.prev is not empty %}
+            {% spaceless %}
+                <li>
+                    <a href="{% if paginator.prev is not null %}{{ paginator.prev.url }}{% else %}{{ paginator.first.url}}{% endif %}" title="Previous page">
+                        &laquo;
+                    </a>
+                </li>
+            {% endspaceless %}
+        {% endif %}
         {% for page in paginator.pages %}
             {% if page is empty %}
-                <li><span>...</span></li>
+            <li><span>...</span></li>
             {% else %}
-        <li{% if paginator.current == page.page %} class="active"{% endif %}><a href="{{ page.url }}">{{ page.page }}</a></li>
+            <li{% if paginator.current == page.page %} class="active"{% endif %}><a href="{{ page.url }}">{{ page.page }}</a></li>
             {% endif %}
         {% endfor %}
-{% if options.show_empty is defined and options.show_empty and paginator.next is not empty %}
-    {% spaceless %}
-        <li>
-            <a href="{{ paginator.next.url }}" title="Next page {{ paginator.next.page }}">
-                &raquo;
-            </a>
-        </li>
-    {% endspaceless %}
-{% endif %}
+        {% if ( options.show_empty is defined and options.show_empty ) or paginator.next is not empty %}
+            {% spaceless %}
+            <li>
+                <a href="{% if paginator.next is not empty %}{{ paginator.next.url }}{% else %}{{ paginator.last.url}}{% endif %}" title="Next page">
+                    &raquo;
+                </a>
+            </li>
+            {% endspaceless %}
+        {% endif %}
         <li>
             <a href="{{ paginator.last.url }}" aria-label="Next">
                 <span aria-hidden="true">&raquo;&raquo;</span>
