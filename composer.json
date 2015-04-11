@@ -17,6 +17,5 @@
         "psr-0": {
             "Millennium\\PaginationBundle": ""
         }
-    },
-    "target-dir": "src"
+    }
 }
