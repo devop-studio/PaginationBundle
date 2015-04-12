@@ -103,6 +103,7 @@ class Pagination
         $start = $current - $this->options['offset'] > 1 ? $current - $this->options['offset'] : 1;
         $end = $current + $this->options['offset'] < $items ? $current + $this->options['offset'] : $items;
 
+        $pages = array();
         for ($i = $start; $i <= $end; $i++) {
             $pages[] = $this->pageAttribute($i);
         }

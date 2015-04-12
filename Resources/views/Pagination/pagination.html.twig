@@ -1,3 +1,4 @@
+{% if paginator.pages is not empty %}
 <nav class="{{ classes.nav|join(' ')|default('text-center') }}">
     <ul class="{{ classes.ul|join(' ')|default('pagination') }}">
         <li>
@@ -37,3 +38,4 @@
         </li>
     </ul>
 </nav>
+{% endif %}
