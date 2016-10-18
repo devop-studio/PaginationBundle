@@ -7,17 +7,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Extension extends \Twig_Extension
 {
-
     /**
-     *
      * @var ContainerInterface
      */
     private $container;
 
     /**
-     * 
      * @param ContainerInterface $container
-     * @param TwigEngine $templating
+     * @param TwigEngine         $templating
      */
     public function __construct(ContainerInterface $container)
     {
@@ -26,10 +23,10 @@ class Extension extends \Twig_Extension
 
     public function getFilters()
     {
-        return array(
-            new \Twig_SimpleFilter('pagination', array($this, 'results')),
-            new \Twig_SimpleFilter('navigation', array($this, 'navigation'))
-        );
+        return [
+            new \Twig_SimpleFilter('pagination', [$this, 'results']),
+            new \Twig_SimpleFilter('navigation', [$this, 'navigation']),
+        ];
     }
 
     public function results($pagination)
@@ -37,11 +34,11 @@ class Extension extends \Twig_Extension
         return $pagination['results'];
     }
 
-    public function navigation($paginator, $settings = array())
+    public function navigation($paginator, $settings = [])
     {
-        
         $options = $this->container->getParameter('millennium.pagination.template');
         $paginator['classes'] = $this->container->getParameter('millennium.pagination.classes');
+
         return $this->container->get('templating')->render($options['pagination'], $paginator);
     }
 
@@ -49,5 +46,4 @@ class Extension extends \Twig_Extension
     {
         return 'millennium_pagination_extension';
     }
-
 }
